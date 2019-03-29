@@ -31,10 +31,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                             password_confirmation: 'password'
       }}
     end
+
     follow_redirect!
     assert_template 'users/show'
-
-    # flashが存在しているか
+    assert logged_in?
     assert flash.any?
   end
 end
