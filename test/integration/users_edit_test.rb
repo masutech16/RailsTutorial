@@ -21,11 +21,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', 'The form contains 4 errors'
   end
 
-  test 'successful edit' do
-    log_in_as(@user)
-
+  test 'successful edit with friendly forwarding' do
     get edit_user_path(@user)
-    assert_template 'users/edit'
+    assert_not session[:forwarding_url].nil?
+
+    log_in_as(@user)
+    assert_redirected_to edit_user_url(@user)
+    assert session[:forwarding_url].nil?
 
     name  = 'Foo Bar'
     email = 'foo@bar.com'
@@ -34,7 +36,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               password:              '',
                                               password_confirmation: '' } }
 
-    assert_not flash.empty?
+    assert flash.any?
     assert_redirected_to @user
 
     @user.reload
