@@ -18,7 +18,12 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  # 将来的にはフォローしているほかのユーザーの情報も入る
   def feed
-    Micropost.where('user_id = ?', id)
+    Micropost.where('user_id = ?', id).order(created_at: :desc)
+  end
+
+  def posts
+    Micropost.where('user_id = ?', id).order(created_at: :desc)
   end
 end
