@@ -28,15 +28,8 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
-  # 将来的にはフォローしているほかのユーザーの情報も入る
   def feed
-    Micropost.where('user_id = ?', id).order(created_at: :desc)
-  end
-
-  def feed
-    following_ids = 'SELECT followed_id FROM relationships
-              WHERE follower_id = :user_id'
-    Micropost.where("user_id IN (#{following_ids})
+    Micropost.created_order.where("user_id IN ( SELECT followed_id FROM relationships WHERE follower_id = :user_id )
               OR user_id = :user_id", user_id: id)
   end
 
