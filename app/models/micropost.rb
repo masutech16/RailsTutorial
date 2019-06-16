@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  has_many :favorites, dependent: :destroy
 
   scope :created_order, -> { order(created_at: :desc) }
 
