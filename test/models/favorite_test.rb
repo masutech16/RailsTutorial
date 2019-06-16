@@ -19,4 +19,14 @@ class FavoriteTest < ActiveSupport::TestCase
     @favorite.micropost_id = nil
     assert_not @favorite.valid?
   end
+
+  test 'should star and unstar a micropost' do
+    michael = users(:michael)
+    ants = microposts(:ants)
+    assert_not michael.star?(ants)
+    michael.star(ants)
+    assert michael.star?(ants)
+    michael.unstar(ants)
+    assert_not michael.star?(ants)
+  end
 end
