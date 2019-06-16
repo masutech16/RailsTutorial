@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
   # user
   resources :users
+  resources :microposts, only: [:create, :destroy]
 end
