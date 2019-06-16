@@ -22,8 +22,4 @@ class User < ApplicationRecord
   def feed
     Micropost.where('user_id = ?', id).order(created_at: :desc)
   end
-
-  def posts
-    Micropost.where('user_id = ?', id).order(created_at: :desc)
-  end
 end

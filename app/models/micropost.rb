@@ -1,9 +1,13 @@
 class Micropost < ApplicationRecord
   belongs_to :user
-  mount_uploader :picture, PictureUploader
+
+  scope :created_order, -> { order(created_at: :desc) }
+
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validate  :picture_size
+
+  mount_uploader :picture, PictureUploader
 
   private
 
