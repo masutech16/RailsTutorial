@@ -1,0 +1,7 @@
+<div id='star_form_<%= micropost.id %>'>
+  <% if current_user.star?(micropost) %>
+    <%= render partial: 'microposts/unstar', locals: { micropost: micropost } %>
+  <% else %>
+    <%= render partial: 'microposts/star', locals: { micropost: micropost } %>
+  <% end %>
+</div>
