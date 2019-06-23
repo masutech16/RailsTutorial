@@ -22,11 +22,11 @@ class FavoriteTest < ActiveSupport::TestCase
 
   test 'should star and unstar a micropost' do
     michael = users(:michael)
-    ants = microposts(:ants)
-    assert_not michael.star?(ants)
-    michael.star(ants)
-    assert michael.star?(ants)
-    michael.unstar(ants)
-    assert_not michael.star?(ants)
+    tone = microposts(:tone)
+    assert_not michael.star?(tone)
+    michael.star(tone)
+    assert michael.star?(tone)
+    michael.unstar(tone)
+    assert_not michael.star?(tone)
   end
 end
