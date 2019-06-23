@@ -16,25 +16,11 @@ class FavoriteTest < ActionDispatch::IntegrationTest
     end
   end
 
-  # test 'should star a micropost the standard way' do
-  #   assert_difference '@user.favorites.count', 1 do
-  #     post favorites_path, params: { micropost_id: @micropost.id }
-  #   end
-  # end
-
   test 'should star a micropost with Ajax' do
     assert_difference '@user.favorites.count', 1 do
       post favorites_path, xhr: true, params: { micropost_id: @micropost.id }
     end
   end
-
-  # test 'should unstar a micropost the standartd way' do
-  #   @user.star(@micropost)
-  #   favorite = @user.favorites.find_by(user_id: @user.id, micropost_id: @micropost.id)
-  #   assert_difference '@user.following.count', -1 do
-  #     delete favorite_path(favorite)
-  #   end
-  # end
 
   test 'should unstar a micropost with Ajax' do
     @user.star(@micropost)
