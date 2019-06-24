@@ -1,5 +1,5 @@
 <div id='star_form_<%= micropost.id %>'>
-  <% if current_user.star?(micropost) %>
+  <% if micropost.favorites.nil? %>
     <%= render partial: 'microposts/unstar', locals: { micropost: micropost } %>
   <% else %>
     <%= render partial: 'microposts/star', locals: { micropost: micropost } %>

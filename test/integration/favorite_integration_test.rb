@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FavoriteTest < ActionDispatch::IntegrationTest
+class FavoriteIntegrationTest < ActionDispatch::IntegrationTest
     def setup
     @user = users(:michael)
     @micropost = microposts(:cat_video)
