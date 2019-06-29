@@ -1,1 +1,1 @@
-$('#star_form_<%= @favorite.micropost_id %>').html("<%= escape_javascript(render partial: 'microposts/unstar', locals: { favorite: @favorite }) %>");
+$('#star_form_<%= @micropost.id %>').html("<%= escape_javascript(render partial: 'microposts/unstar', locals: { micropost: @micropost }) %>");

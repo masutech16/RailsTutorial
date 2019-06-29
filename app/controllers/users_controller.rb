@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.created_order.paginate(page: params[:page])
+    @microposts = @user.microposts.includes(:favorites).created_order.paginate(page: params[:page])
   end
 
   def new
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   def favorites
     @title = 'Favorites'
     @user = User.find(params[:id])
-    @microposts = @user.favorite_microposts.includes(:user).includes(:favorites).paginate(page: params[:page])
+    @microposts = @user.favorite_microposts.includes(%i(user favorites)).paginate(page: params[:page])
     render 'show_favorite'
   end
 

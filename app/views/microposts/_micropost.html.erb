@@ -10,7 +10,7 @@
   </span>
   <span>
     <% if logged_in? %>
-      <%= render partial: 'microposts/star_form', locals: { micropost: micropost, favorites: micropost.favorites } %>
+      <%= render partial: 'microposts/star_form', locals: { micropost: micropost } %>
     <% end %>
     <% if current_user?(micropost.user) %>
       <%= link_to 'delete', micropost, method: :delete, data: { confirm: 'You sure?' } %>

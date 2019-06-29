@@ -10,6 +10,11 @@ class Micropost < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
 
+  def star?(user)
+    self.favorites.exists?(user_id: user.id)
+  end
+
+
   private
 
     def picture_size

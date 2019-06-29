@@ -1,7 +1,7 @@
 <div id='star_form_<%= micropost.id %>'>
-  <% if favorites.empty? %>
-    <%= render partial: 'microposts/star', locals: { micropost: micropost } %>
+  <% if micropost.star?(current_user) %>
+    <%= render partial: 'microposts/unstar', locals: { micropost: micropost } %>
   <% else %>
-    <%= render partial: 'microposts/unstar', locals: { favorite: favorites.first } %>
+    <%= render partial: 'microposts/star', locals: { micropost: micropost } %>
   <% end %>
 </div>
