@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   def favorites
     @title = 'Favorites'
     @user = User.find(params[:id])
-    @microposts = @user.favorite_microposts.eager_load(:user).paginate(page: params[:page])
+    @microposts = @user.favorite_microposts.includes(:user).paginate(page: params[:page])
     render 'show_favorite'
   end
 

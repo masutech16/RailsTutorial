@@ -34,3 +34,7 @@ followers.each { |follower| follower.follow(user)}
 user = User.first
 microposts = Micropost.order(:created_at).take(60)
 microposts.each { |micropost| user.star(micropost) }
+
+user = User.second
+microposts = Micropost.order(:created_at).take(60)
+microposts.each { |micropost| user.star(micropost) }
