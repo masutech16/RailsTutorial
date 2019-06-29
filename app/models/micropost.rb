@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  has_many :favorites, dependent: :destroy
 
   scope :created_order, -> { order(created_at: :desc) }
 
@@ -8,6 +9,17 @@ class Micropost < ApplicationRecord
   validate  :picture_size
 
   mount_uploader :picture, PictureUploader
+
+  def find_favorite(favorites)
+    favorites.each do |favorite|
+      if favorite.micropost_id == self.id
+        return favorite
+      end
+    end
+    return nil
+  end
+
+
 
   private
 

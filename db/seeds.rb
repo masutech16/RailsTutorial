@@ -29,3 +29,12 @@ followers = users[3..40]
 
 following.each { |followed| user.follow(followed)}
 followers.each { |follower| follower.follow(user)}
+
+# favorites
+user = User.first
+microposts = Micropost.order(:created_at).take(60)
+microposts.each { |micropost| user.star(micropost) }
+
+user = User.second
+microposts = Micropost.order(:created_at).take(60)
+microposts.each { |micropost| user.star(micropost) }

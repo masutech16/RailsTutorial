@@ -1,0 +1,8 @@
+<div id='star_form_<%= micropost.id %>'>
+  <% favorite = micropost.find_favorite(@favorites) %>
+  <% if favorite.nil? %>
+    <%= render partial: 'microposts/star', locals: { micropost: micropost } %>
+  <% else %>
+    <%= render partial: 'microposts/unstar', locals: { favorite: favorite } %>
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+$('#star_form_<%= @micropost.id %>').html("<%= escape_javascript(render partial: 'microposts/star', locals: { micropost: @micropost }) %>");
+
