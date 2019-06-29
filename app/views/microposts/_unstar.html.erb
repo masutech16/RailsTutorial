@@ -1,4 +1,4 @@
-<%= form_for(micropost.favorites.first,
+<%= form_for(favorite,
       html: { method: :delete },
       remote: true) do |f| %>
   <%= f.submit 'unstar', class: 'btn star_button' %>

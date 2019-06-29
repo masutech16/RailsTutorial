@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.includes(:favorites).created_order.paginate(page: params[:page])
+    @favorites = current_user.favorites.where(micropost_id: @microposts)
   end
 
   def new
@@ -64,6 +65,7 @@ class UsersController < ApplicationController
     @title = 'Favorites'
     @user = User.find(params[:id])
     @microposts = @user.favorite_microposts.includes(%i(user favorites)).paginate(page: params[:page])
+    @favorites = current_user.favorites.where(micropost_id: @microposts)
     render 'show_favorite'
   end
 

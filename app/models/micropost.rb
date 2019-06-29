@@ -10,9 +10,15 @@ class Micropost < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
 
-  def star?(user)
-    self.favorites.exists?(user_id: user.id)
+  def find_favorite(favorites)
+    favorites.each do |favorite|
+      if favorite.micropost_id == self.id
+        return favorite
+      end
+    end
+    return nil
   end
+
 
 
   private
